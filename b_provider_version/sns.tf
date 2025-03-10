@@ -3,5 +3,5 @@ resource "aws_sns_topic" "user_updates" {
 }
 
 output "sns_topic_owner" {
-  value = aws_sns_topic.user_updates.owner
-}
+  value = aws_sns_topic.user_updates
+}   
