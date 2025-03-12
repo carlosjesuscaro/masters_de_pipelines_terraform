@@ -21,4 +21,7 @@ can you prevent this from happening in the future?
     - Updating the role's trusts relationship with the user's ID to accept the association 
   - Then updating the `provider.tf` - role_arm with the ID from the role that will be assumed by the user
 - Issue 2
-  - 
+  - The `aws_sns_topic.user_updates.owner` is incorrect as the "owner" attribute does not exist. Instead, the "arn" attribute exists
+- Extension
+  - Adding a new terraform file to create an EC2 instance and another file to create an S3 bucket
+  - Configure SNS to receive a notification when the application running in the EC2 instance successfully send a file to the S3 bucket
