@@ -10,10 +10,9 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region  = "eu-west-1"
+  region  = "us-east-2"
   profile = "default_profile"
-  assume_role {
-    role_arn = "arn:aws:iam::164686679788:role/service-role/s3_trail_to_cloudwatch"
-  }
+  # assume_role {
+  #   role_arn = ""
+  # }
 }
-
