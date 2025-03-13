@@ -16,6 +16,7 @@ data "aws_ami" "aws_linux_ubuntu" {
 resource "aws_security_group" "ec2_sg" {
   name        = "ec2-security-group"
   description = "Allow SSH inbound traffic"
+  vpc_id = aws_vpc.main.id
 
   ingress {
     from_port   = 22
