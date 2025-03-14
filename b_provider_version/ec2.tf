@@ -25,6 +25,13 @@ resource "aws_security_group" "ec2_sg" {
     cidr_blocks = ["0.0.0.0/0"] # Be very restrictive in production!
   }
 
+  # ingress {
+  #   from_port   = 0
+  #   to_port     = 80
+  #   protocol    = "tcp"
+  #   cidr_blocks = ["0.0.0.0/0"] # Be very restrictive in production!
+  # }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -52,6 +59,28 @@ resource "aws_subnet" "public" {
   cidr_block        = "10.0.1.0/24"
   map_public_ip_on_launch = true
   depends_on = [aws_internet_gateway.gw]
+  tags = {
+    Name = "public-subnet"
+  }
+}
+
+# Create a route table
+resource "aws_route_table" "rtb" {
+  vpc_id = aws_vpc.main.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.gw.id
+  }
+  tags = {
+    Name = "public-route-table"
+  }
+}
+
+# Associating the route table with the public subnet
+resource "aws_main_route_table_association" "rta" {
+  vpc_id         = aws_vpc.main.id
+  # subnet_id = aws_subnet.public.id
+  route_table_id = aws_route_table.rtb.id
 }
 
 
