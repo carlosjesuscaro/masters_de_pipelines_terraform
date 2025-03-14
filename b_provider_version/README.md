@@ -25,3 +25,15 @@ can you prevent this from happening in the future?
 - Extension
   - Adding a new terraform file to create an EC2 instance and another file to create an S3 bucket
   - Configure SNS to receive a notification when the application running in the EC2 instance successfully send a file to the S3 bucket
+
+## New project ideas:
+- Project 1
+  - Set up an instance where the EC2 instance is behind a NAT box
+  - Adding with the creation of a key pair for SSH access (if it exists, no need to create a new one)
+- Project 2
+  - Set up a simple application running in AWS Lambda and storing a file into a S3  bucket
+  - Set up SNS to confirm whether the task was successful or not
+- Project 3
+  - Similar to Project 2 but from a container and using either an EC2 or Fargate
+- Project 4
+  - All the previous projects but in GCP

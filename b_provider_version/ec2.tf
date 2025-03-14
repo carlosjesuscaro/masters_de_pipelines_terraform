@@ -43,13 +43,16 @@ resource "aws_security_group" "ec2_sg" {
 # VPC
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
+  tags = {
+    Name = "project-vpc"
+  }
 }
 
 # Internet gateway
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
   tags = {
-    Name = "main-igw"
+    Name = "project-igw"
   }
 }
 
@@ -60,7 +63,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
   depends_on = [aws_internet_gateway.gw]
   tags = {
-    Name = "public-subnet"
+    Name = "project-public-subnet"
   }
 }
 
@@ -72,7 +75,7 @@ resource "aws_route_table" "rtb" {
     gateway_id = aws_internet_gateway.gw.id
   }
   tags = {
-    Name = "public-route-table"
+    Name = "project-public-route-table"
   }
 }
 
@@ -89,7 +92,7 @@ resource "aws_instance" "ec2_primary" {
   instance_type = "t2.micro"
   ami           = data.aws_ami.aws_linux_ubuntu.id
   tags = {
-    Name = "primary_instance"
+    Name = "project-primary_instance"
   }
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
   depends_on = [aws_subnet.public]
