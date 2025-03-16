@@ -16,20 +16,13 @@ can you prevent this from happening in the future?
 - Issue 1 
   - Creating a profile and associating the AWS account under that profile
   - Then updating the `provider.tf` - profile node
-  - In AWS console:
-    - Updating the user's permissions so that it can assume a role
-    - Updating the role's trusts relationship with the user's ID to accept the association 
-  - Then updating the `provider.tf` - role_arm with the ID from the role that will be assumed by the user
 - Issue 2
   - The `aws_sns_topic.user_updates.owner` is incorrect as the "owner" attribute does not exist. Instead, the "arn" attribute exists
-- Extension
-  - Adding a new terraform file to create an EC2 instance and another file to create an S3 bucket
-  - Configure SNS to receive a notification when the application running in the EC2 instance successfully send a file to the S3 bucket
 
 ## New project ideas:
 - Project 1
-  - Set up an instance where the EC2 instance is behind a NAT box
-  - Adding with the creation of a key pair for SSH access (if it exists, no need to create a new one)
+  - Set up an EC2 instance behind a NAT box
+  - Adding a key pair for SSH access (if it exists, no need to create a new one)
 - Project 2
   - Set up a simple application running in AWS Lambda and storing a file into a S3  bucket
   - Set up SNS to confirm whether the task was successful or not
