@@ -1,0 +1,5 @@
+# Goal
+- Create a role with permissions to create an EC2 instance
+- Reminder:
+  - In order to access the EC2, a public subnet, security group, internet gateway and routing table must be created
+  - When using a role, the role does not inherit any permissions so all the required permissions must be added to the role explicitly 
